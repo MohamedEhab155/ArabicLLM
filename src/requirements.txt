@@ -1,0 +1,2 @@
+pydantic == 2.12.5
+transformers == 5.1.0
