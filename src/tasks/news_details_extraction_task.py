@@ -16,12 +16,11 @@ def build_details_extraction_prompt(story: str) -> List[Dict]:
             ])
         },
         {
-            "role": "user",
-            "content": "\n".join([
-                "## Story:",
-                story['content'].strip(),
-                "",
-
+           "role": "user",
+            "content":  "\n".join([
+            "## Story:",
+            story.strip(),
+            "",
                 "## Pydantic Details:",
                 json.dumps(
                     NewsDetails.model_json_schema(), ensure_ascii=False
