@@ -1,5 +1,6 @@
 pydantic == 2.12.5
-transformers == 5.1.0
+transformers==4.57.1
 ollama ==0.6.1
 python-dotenv==1.2.1
 openai == 2.20.0
+json-repair ==  0.58.0
