@@ -4,3 +4,8 @@ ollama ==0.6.1
 python-dotenv==1.2.1
 openai == 2.20.0
 json-repair ==  0.58.0
+wandb == 0.25.0
+vllm ==  0.16.0
+locust == 2.43.3
+Faker == 40.5.1
+streamlit ==  1.54.0
