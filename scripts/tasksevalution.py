@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 
 from src.models.base_model import base_model
 from src.models.openai_model import OpenAIModel
+from src.models.finetunnig_model import finetuning_model
 from src.tasks.news_details_extraction_task import DetailsExtractionTask
 from src.tasks.translation_task import TranslationTask
 from src.helper import config
-
+from .Enums import ModelType ,tasks
 
 load_dotenv("src/.env")
 
@@ -38,14 +39,16 @@ def get_task_class(task_name: str):
 
 def initialize_model(model_type: str, device: str):
     """Initialize the appropriate model based on type."""
-    if model_type == "base_model":
+    if model_type ==  ModelType.BASE_MODEL :
         return base_model(model_id=config.BASE_MODEL_ID, device=device)
-    elif model_type == "openai_model":
+    elif model_type == ModelType.OPENAI_MODEL.value:
         return OpenAIModel(
             endpoint=os.getenv("OPENAI_ENDPOINT"),
             model_name=os.getenv("OPENAI_MODEL_NAME"),
             api_key=os.getenv("OPENAI_API_KEY")
         )
+    elif model_type==ModelType.FINETUNING_MODEL.value:
+        return finetuning_model(config.BASE_MODEL_ID,config.FINETUNING_MODEL_ID,device=device)
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
@@ -80,8 +83,8 @@ def run_task(model, task_class, story_content: str, task_name: str, target_langu
 
 def main():
 
-    task_name = "translation"  # Change to "details_extraction" or "translation" as needed
-    model_type = "openai_model"
+    task_name = tasks.TRANSLATION.value
+    model_type= ModelType.FINETUNING_MODEL.value
     device = config.DEVICE
     target_language = 'en'
 

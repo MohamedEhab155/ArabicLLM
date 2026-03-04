@@ -7,6 +7,12 @@ class data(Enum):
 
 
 class tasks(Enum):
-    details_extraction = "details_extraction"
-    translation = "translation"
-    summarization = "summarization"
+    DETAILS_EXTRACTION = "details_extraction"
+    TRANSLATION = "translation"
+    SUMMARIZATION = "summarization"
+
+class ModelType(Enum):
+    BASE_MODEL="base_model"
+    OPENAI_MODEL="openai_model"
+    FINETUNING_MODEL="finetuning_model"
+    
